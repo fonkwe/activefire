@@ -1,3 +1,4 @@
+# ActiveFires is an app that shows the location of fires around the world in near real time. This is a mentorship project with the goal of learning React + TypeScript
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
