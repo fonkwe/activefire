@@ -14,21 +14,6 @@ interface MapContainerProps {
 
 interface MapContainerState {}
 
-new Map({
-    target: "map",
-    layers: [
-      new TileLayer({
-        source: new XYZ({
-          url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-        })
-      })
-    ],
-    view: new View({
-      center: [0, 0],
-      zoom: 2
-    })
-  });
-
 class MapContainer extends React.Component<MapContainerProps, MapContainerState> {
 
     constructor (props: MapContainerProps, state?: MapContainerState) {
@@ -36,11 +21,30 @@ class MapContainer extends React.Component<MapContainerProps, MapContainerState>
         this.state = {}
     }
 
+    mapRef: any = React.createRef();
+
+    componentDidMount () {
+      new Map({
+        target: this.mapRef.current,
+        layers: [
+          new TileLayer({
+            source: new XYZ({
+              url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+            })
+          })
+        ],
+        view: new View({
+          center: [0, 0],
+          zoom: 2
+        })
+      });
+    }
+
     render() { 
         const {height, width} = this.props;
 
         return (
-            <div id="map" style={{height: height, width: width}}></div>
+            <div ref={this.mapRef} style={{height: height, width: width}}></div>
         )
     }
 }
