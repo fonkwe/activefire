@@ -1,9 +1,11 @@
 import React from 'react'
 
 import Map from 'ol/Map';
-import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
+import View from 'ol/View';
 import XYZ from 'ol/source/XYZ';
+
+import './index.css';
 
 interface MapContainerProps {
     height: number,
@@ -13,7 +15,7 @@ interface MapContainerProps {
 interface MapContainerState {}
 
 new Map({
-    target: 'map',
+    target: "map",
     layers: [
       new TileLayer({
         source: new XYZ({
