@@ -10,7 +10,10 @@ class App extends React.Component {
       <div className="App">
         <NavBar />
         <Header />
-        <MapContainer height={500} width={500} />
+        <div className="M-style">
+             <MapContainer height={1400} width={1400} />
+        </div>
+        
      </div>
     )
   }
