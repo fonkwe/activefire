@@ -5,6 +5,12 @@ import TileLayer from 'ol/layer/Tile';
 import View from 'ol/View';
 import XYZ from 'ol/source/XYZ';
 
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import Feature from 'ol/Feature';
+import Point from 'ol/geom/Point';
+import * as olProj from 'ol/proj';
+
 import './index.css';
 
 interface MapContainerProps {
@@ -23,8 +29,10 @@ class MapContainer extends React.Component<MapContainerProps, MapContainerState>
 
     mapRef: any = React.createRef();
 
+    
+
     componentDidMount () {
-      new Map({
+      const mapContent = new Map({
         target: this.mapRef.current,
         layers: [
           new TileLayer({
@@ -38,6 +46,19 @@ class MapContainer extends React.Component<MapContainerProps, MapContainerState>
           zoom: 2
         })
       });
+
+
+      var layer = new VectorLayer({
+        source: new VectorSource({
+            features: [
+                new Feature({
+                    geometry: new Point(olProj.fromLonLat([4.35247, 50.84673]))
+                })
+            ]
+        })
+    });
+
+    mapContent.addLayer(layer);
     }
 
     render() { 
