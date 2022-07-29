@@ -10,6 +10,7 @@ import VectorSource from 'ol/source/Vector';
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
 import * as olProj from 'ol/proj';
+import {Icon} from 'ol/style';
 
 import './index.css';
 
@@ -43,18 +44,25 @@ class MapContainer extends React.Component<MapContainerProps, MapContainerState>
         ],
         view: new View({
           center: [0, 0],
-          zoom: 2
+          zoom: 1
         })
       });
-
-
+      
+      const iconFeature = new Feature({
+        geometry: new Point(olProj.fromLonLat([4.35247, 50.84673])),
+        image: new Icon(/** @type {module:ol/style/Icon~Options} */ ({
+          anchor: [0.5, 46],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'pixels',
+          src: './fireImg,png',
+        }))
+      });
+      
+  
       var layer = new VectorLayer({
         source: new VectorSource({
-            features: [
-                new Feature({
-                    geometry: new Point(olProj.fromLonLat([4.35247, 50.84673]))
-                })
-            ]
+            features: [iconFeature]
+            
         })
     });
 
